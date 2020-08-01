@@ -1,0 +1,27 @@
+.navbar {
+    background-color: rgb(85, 75, 60) !important;
+    font-size: 20px;
+    padding: 15px;
+}
+
+.navbar-brand {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    text-shadow: 1px 1px 2px black;
+}
+
+.blue {
+    color: #4285F4;
+}
+
+.red {
+    color: #EA4335;
+}
+
+.yellow {
+    color: #FBBC05;
+}
+
+.green {
+    color: #34A853;
+}
