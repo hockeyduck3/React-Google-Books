@@ -68,7 +68,7 @@
     margin-right: 30px;
 }
 
-.bookLink {
+.bookLink, .saveBtn {
     float: right;
     border: 1px black solid;
     border-radius: 0.5rem;
@@ -78,13 +78,18 @@
     box-shadow: 2px 3px 2px -2px black;
 }
 
-.bookLink:hover {
+.saveBtn {
+    background-color: rgb(255, 0, 0);
+    margin-left: 15px;
+}
+
+.bookLink:hover, .saveBtn:hover {
     text-decoration: none;
     color: white;
     transform: scale(1.02);
 }
 
-.bookLink:active {
+.bookLink:active, .saveBtn:active {
     transform: scale(1.00);
     box-shadow: 0px 0px 0px 0px black;
 }

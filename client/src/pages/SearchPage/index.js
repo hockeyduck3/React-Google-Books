@@ -125,14 +125,15 @@ class Search extends Component {
                                             return (
                                                 <Card id='resultsCard' key={i}>
                                                     <img className='bookImage' src={book.volumeInfo.imageLinks.thumbnail} alt={`Book cover for ${book.volumeInfo.title}`} />
-                                                    <a className='bookLink' href={book.volumeInfo.infoLink} target='_blank' rel='noopener noreferrer'>View Book</a>
                                                     <button className='saveBtn' onClick={() => this.saveFunc({
                                                         title: book.volumeInfo.title,
                                                         authors: authorRes,
                                                         categories: book.volumeInfo.categories,
                                                         description: book.volumeInfo.description,
-                                                        image: book.volumeInfo.imageLinks.thumbnail
+                                                        image: book.volumeInfo.imageLinks.thumbnail,
+                                                        link: book.volumeInfo.infoLink
                                                     })}>Save Book</button>
+                                                    <a className='bookLink' href={book.volumeInfo.infoLink} target='_blank' rel='noopener noreferrer'>View Book</a>
                                                     <p className='bookTitle'>{book.volumeInfo.title}</p>
                                                     <p className='bookAuthors'>By: {authorRes}</p>
                                                     <p className='bookCategory'>Category: {book.volumeInfo.categories}</p>
