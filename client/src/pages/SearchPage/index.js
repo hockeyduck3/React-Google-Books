@@ -38,6 +38,16 @@ class Search extends Component {
         }
     }
 
+    saveFunc = book => {
+        console.log(book);
+
+        API.saveBook(book).then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
     displayError = () => {
         const searchBar = document.getElementById('inputGroup');
 
@@ -116,6 +126,13 @@ class Search extends Component {
                                                 <Card id='resultsCard' key={i}>
                                                     <img className='bookImage' src={book.volumeInfo.imageLinks.thumbnail} alt={`Book cover for ${book.volumeInfo.title}`} />
                                                     <a className='bookLink' href={book.volumeInfo.infoLink} target='_blank' rel='noopener noreferrer'>View Book</a>
+                                                    <button className='saveBtn' onClick={() => this.saveFunc({
+                                                        title: book.volumeInfo.title,
+                                                        authors: authorRes,
+                                                        categories: book.volumeInfo.categories,
+                                                        description: book.volumeInfo.description,
+                                                        image: book.volumeInfo.imageLinks.thumbnail
+                                                    })}>Save Book</button>
                                                     <p className='bookTitle'>{book.volumeInfo.title}</p>
                                                     <p className='bookAuthors'>By: {authorRes}</p>
                                                     <p className='bookCategory'>Category: {book.volumeInfo.categories}</p>
