@@ -2,8 +2,16 @@
     margin-top: 50px;
 }
 
-#searchCard {
+#searchCard, #resultsCard {
     border: 2px solid black;
     border-radius: 0.5rem;
     box-shadow: 4px 4px 2px -2px black;
+}
+
+#resultsCol {
+    margin-top: 60px;
+}
+
+#resultsCard {
+    text-align: center;
 }

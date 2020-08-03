@@ -15,12 +15,25 @@ class Search extends Component {
     }
 
     render() {
+        const res = this.state.results;
         return (
-            <Container>
+            <Container fluid={true}>
                 <Row>
+                    {/* Search Bar */}
                     <Column size='md-12' id='searchCol'>
                         <Card id='searchCard'>
                             <h1>Hello there</h1>
+                        </Card>
+                    </Column>
+
+                    {/* Results */}
+                    <Column size='md-12' id='resultsCol'>
+                        <Card id='resultsCard'>
+                            {res.length !== 0 ? (
+                                <h1>Results placeholder</h1>
+                            ) : (
+                                <h1>No results yet. Use the search bar above to search for a book!</h1>
+                            )}
                         </Card>
                     </Column>
                 </Row>
