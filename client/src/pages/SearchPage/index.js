@@ -72,7 +72,7 @@ class Search extends Component {
                     {/* Results */}
                     <Column size='md-12' id='resultsCol'>
                         {res.length !== 0 ? (
-                            <Container fluid={true}>
+                            <Container>
                                 <Card id='resultsCard'>
                                     <h2>Results</h2>
                                     <hr />
@@ -81,8 +81,13 @@ class Search extends Component {
                                             // This will be used to store the Authors info
                                             let authorRes = []
 
+                                            // This will run first to check and see if the book has an Author.
+                                            if (book.volumeInfo.authors === undefined) {
+                                                authorRes.push('Unknown');
+                                            }
+
                                             // If there is more than one author run this for loop
-                                            if (book.volumeInfo.authors.length > 1) {
+                                            else if (book.volumeInfo.authors.length > 1) {
                                                 // Because the authors come in an array this space needs to be added manually
                                                 const spc = ', ';
 
@@ -109,9 +114,12 @@ class Search extends Component {
 
                                             return (
                                                 <Card id='resultsCard' key={i}>
-                                                    <p id='title'>{book.volumeInfo.title}</p>
-                                                    <p id='authors'>{authorRes}</p>
-                                                    <p id='category'>{book.volumeInfo.categories}</p>
+                                                    <img className='bookImage' src={book.volumeInfo.imageLinks.thumbnail} alt={`Book cover for ${book.volumeInfo.title}`} />
+                                                    <a className='bookLink' href={book.volumeInfo.infoLink} target='_blank' rel='noopener noreferrer'>View Book</a>
+                                                    <p className='bookTitle'>{book.volumeInfo.title}</p>
+                                                    <p className='bookAuthors'>By: {authorRes}</p>
+                                                    <p className='bookCategory'>Category: {book.volumeInfo.categories}</p>
+                                                    <p className='bookDescription'>{book.volumeInfo.description}</p>
                                                 </Card>
                                             ) 
                                         })

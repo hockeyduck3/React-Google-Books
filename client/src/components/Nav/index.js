@@ -26,7 +26,7 @@ function Nav() {
 
                     {/* Saved Page */}
                     <li className='nav-item'>
-                        <NavLink activeClassName='active' exact to='/' className='nav-link'>Saved Books</NavLink>
+                        <NavLink activeClassName='active' exact to='/Saved' className='nav-link'>Saved Books</NavLink>
                     </li>
 
                 </ul>
