@@ -10,10 +10,6 @@ class Search extends Component {
         results: []
     }
 
-    inputFunc = () => {
-
-    }
-
     render() {
         const res = this.state.results;
         return (
@@ -21,20 +17,27 @@ class Search extends Component {
                 <Row>
                     {/* Search Bar */}
                     <Column size='md-12' id='searchCol'>
-                        <Card id='searchCard'>
-                            <h1>Hello there</h1>
-                        </Card>
+                        <h1 id='searchFor'>Search for a book</h1>
+                        <form className='searchBar'>
+                            <div className='input-group'>
+                                <input type='text' className='searchInput' name='search' placeholder='Type the name of a book' onChange={this.inputFunc} />
+                
+                                <div className='input-group-append'>
+                                    <button type='submit' className='searchBtn'>Search</button>
+                                </div>
+                            </div>
+                        </form>
                     </Column>
 
                     {/* Results */}
                     <Column size='md-12' id='resultsCol'>
-                        <Card id='resultsCard'>
-                            {res.length !== 0 ? (
-                                <h1>Results placeholder</h1>
-                            ) : (
-                                <h1>No results yet. Use the search bar above to search for a book!</h1>
-                            )}
-                        </Card>
+                        {res.length !== 0 ? (
+                            <Card id='resultsCard'>
+                                <placeholder />
+                            </Card>
+                        ) : (
+                            <hr />
+                        )}
                     </Column>
                 </Row>
             </Container>
