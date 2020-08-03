@@ -13,7 +13,7 @@ const bookSchema = new Scehma({
     },
 
     categories: {
-        type: String
+        type: Array
     },
 
     description : {
