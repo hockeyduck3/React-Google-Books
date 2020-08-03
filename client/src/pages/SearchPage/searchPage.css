@@ -56,3 +56,7 @@
     transition: ease-out .15s;
     width: 200px;
 }
+
+#resultsCard {
+    margin-bottom: 40px;
+}

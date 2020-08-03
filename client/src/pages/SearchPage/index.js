@@ -26,6 +26,16 @@ class Search extends Component {
             validateError = true;
             this.displayError();
         }
+
+        if (!validateError) {
+            API.searchForBook(this.state.search).then(res => {
+                this.setState({
+                    results: res.data.items
+                });
+
+                console.log(this.state.results);
+            })
+        }
     }
 
     displayError = () => {
@@ -41,6 +51,7 @@ class Search extends Component {
 
     render() {
         const res = this.state.results;
+
         return (
             <Container fluid={true}>
                 <Row>
@@ -61,9 +72,52 @@ class Search extends Component {
                     {/* Results */}
                     <Column size='md-12' id='resultsCol'>
                         {res.length !== 0 ? (
-                            <Card id='resultsCard'>
-                                <placeholder />
-                            </Card>
+                            <Container fluid={true}>
+                                <Card id='resultsCard'>
+                                    <h2>Results</h2>
+                                    <hr />
+                                    {
+                                        res.map((book, i) => {
+                                            // This will be used to store the Authors info
+                                            let authorRes = []
+
+                                            // If there is more than one author run this for loop
+                                            if (book.volumeInfo.authors.length > 1) {
+                                                // Because the authors come in an array this space needs to be added manually
+                                                const spc = ', ';
+
+                                                // Loop over the array
+                                                for (let i = 0; i < book.volumeInfo.authors.length; i++) {
+                                                    // Check and see if it's on the last item of the array
+                                                    if (i !== book.volumeInfo.authors.length - 1) {
+                                                        let a =  book.volumeInfo.authors[i];
+    
+                                                        authorRes.push(a);
+                                                        authorRes.push(spc);
+                                                    } else {
+                                                        let a =  book.volumeInfo.authors[i];
+    
+                                                        authorRes.push(a);
+                                                    }
+                                                }
+                                            } 
+
+                                            // If there is only one author then just add them
+                                            else {
+                                                authorRes.push(book.volumeInfo.authors);
+                                            }
+
+                                            return (
+                                                <Card id='resultsCard' key={i}>
+                                                    <p id='title'>{book.volumeInfo.title}</p>
+                                                    <p id='authors'>{authorRes}</p>
+                                                    <p id='category'>{book.volumeInfo.categories}</p>
+                                                </Card>
+                                            ) 
+                                        })
+                                    }
+                                </Card>
+                            </Container>
                         ) : (
                             <hr />
                         )}
