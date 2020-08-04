@@ -7,6 +7,9 @@ const routes = require('./routes');
 
 const PORT = process.env.PORT || 3001;
 
+server.use(express.urlencoded({ extended: true }));
+server.use(express.json());
+
 // Serve the static files from the React server
 server.use(express.static(path.join(__dirname, 'client/build')));
 

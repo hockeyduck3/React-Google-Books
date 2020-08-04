@@ -39,8 +39,6 @@ class Search extends Component {
     }
 
     saveFunc = book => {
-        console.log(book);
-
         API.saveBook(book).then(res => {
             console.log(res);
         }).catch(err => {

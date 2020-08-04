@@ -1,7 +1,7 @@
-const db = require('../model/book');
+const db = require('../model');
 
 module.exports = {
-    createBook: (req, res) => {
+    createBook: function(req, res) {
         db.Book.create(req.body).then(book => {
             res.json(book);
         })
