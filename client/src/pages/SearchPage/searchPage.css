@@ -1,6 +1,6 @@
 #searchFor {
-    text-align: center;
     margin-bottom: 15px;
+    text-align: center;
 }
 
 #searchCol {
@@ -62,20 +62,22 @@
 }
 
 .bookImage {
-    float: left;
     border: 2px black solid;
     box-shadow: 4px 4px 2px -2px black;
+    float: left;
     margin-right: 30px;
 }
 
 .bookLink, .saveBtn {
-    float: right;
+    background-color: deepskyblue;
     border: 1px black solid;
     border-radius: 0.5rem;
-    padding: 5px;
-    color: white;
-    background-color: deepskyblue;
     box-shadow: 2px 3px 2px -2px black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    float: right;
+    padding: 5px;
 }
 
 .saveBtn {
@@ -90,8 +92,13 @@
 }
 
 .bookLink:active, .saveBtn:active {
-    transform: scale(1.00);
     box-shadow: 0px 0px 0px 0px black;
+    outline: none;
+    transform: scale(1.00);
+}
+
+.saveBtn:focus {
+    outline: none;
 }
 
 p {

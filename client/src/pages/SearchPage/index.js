@@ -87,7 +87,7 @@ class Search extends Component {
                                     {
                                         res.map((book, i) => {
                                             // This will be used to store the Authors info
-                                            let authorRes = []
+                                            let authorRes = [];
 
                                             // This will run first to check and see if the book has an Author.
                                             if (book.volumeInfo.authors === undefined) {
@@ -122,7 +122,11 @@ class Search extends Component {
 
                                             return (
                                                 <Card id='resultsCard' key={i}>
-                                                    <img className='bookImage' src={book.volumeInfo.imageLinks.thumbnail} alt={`Book cover for ${book.volumeInfo.title}`} />
+                                                    {book.volumeInfo.imageLinks !== undefined ? (
+                                                        <img className='bookImage' src={book.volumeInfo.imageLinks.thumbnail} alt={`Book cover for ${book.volumeInfo.title}`} />
+                                                    ) : (
+                                                        <img className='bookImage' src='./images/no-image.jpg' alt='Unknown book cover' />
+                                                    )}
                                                     <button className='saveBtn' onClick={() => this.saveFunc({
                                                         title: book.volumeInfo.title,
                                                         authors: authorRes,
