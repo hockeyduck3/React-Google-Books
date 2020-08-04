@@ -38,7 +38,15 @@ class Search extends Component {
         }
     }
 
-    saveFunc = book => {
+    saveFunc = (book, id) => {
+        const button = document.getElementById(id);
+
+        button.classList.replace('saveBtn', 'disabledBtn');
+        button.innerHTML = 'Saved';
+        button.disabled = true;
+
+        localStorage.setItem(id, id);
+
         API.saveBook(book).then(res => {
             console.log(res);
         }).catch(err => {
@@ -127,14 +135,19 @@ class Search extends Component {
                                                     ) : (
                                                         <img className='bookImage' src='./images/no-image.jpg' alt='Unknown book cover' />
                                                     )}
-                                                    <button className='saveBtn' onClick={() => this.saveFunc({
-                                                        title: book.volumeInfo.title,
-                                                        authors: authorRes,
-                                                        categories: book.volumeInfo.categories,
-                                                        description: book.volumeInfo.description,
-                                                        image: book.volumeInfo.imageLinks.thumbnail,
-                                                        link: book.volumeInfo.infoLink
-                                                    })}>Save Book</button>
+
+                                                    {localStorage.getItem(book.id) === null ? (
+                                                        <button id={book.id} className='saveBtn' onClick={() => this.saveFunc({
+                                                            title: book.volumeInfo.title,
+                                                            authors: authorRes,
+                                                            categories: book.volumeInfo.categories,
+                                                            description: book.volumeInfo.description,
+                                                            image: book.volumeInfo.imageLinks.thumbnail,
+                                                            link: book.volumeInfo.infoLink
+                                                        }, book.id)}>Save Book</button>
+                                                    ) : (
+                                                        <button className='disabledBtn' disabled={true}>Saved</button>
+                                                    )}    
                                                     <a className='bookLink' href={book.volumeInfo.infoLink} target='_blank' rel='noopener noreferrer'>View Book</a>
                                                     <p className='bookTitle'>{book.volumeInfo.title}</p>
                                                     <p className='bookAuthors'>By: {authorRes}</p>
