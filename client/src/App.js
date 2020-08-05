@@ -7,7 +7,7 @@ import SavedPage from './pages/SavedPage/index';
 
 function App() {
     return (
-        <Router>
+        <Router basename='/'>
             <div>
                 <Nav />
                 <Switch>
