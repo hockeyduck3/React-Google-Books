@@ -165,7 +165,7 @@ class Search extends Component {
                                 </Card>
                             </Container>
                         ) : (
-                            <hr />
+                            <div />
                         )}
                     </Column>
                 </Row>
