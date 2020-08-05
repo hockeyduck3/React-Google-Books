@@ -12,6 +12,17 @@ class Search extends Component {
         results: []
     }
 
+    componentDidMount() {
+        API.grabAllBooks().then(res => {
+            // This will make sure that if a user is on another computer they won't be able to save the same book twice.
+            if (res.data.length !== 0) {
+                res.data.map((book) => {
+                   return localStorage.setItem(book.bookId, book.bookId);
+                });
+            }
+        }).catch(err => console.log(err));
+    }
+
     inputFunc = event => {
         const { name, value } = event.target;
         this.setState({[name]: value});
