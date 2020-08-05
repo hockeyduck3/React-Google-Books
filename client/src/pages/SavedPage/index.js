@@ -78,7 +78,7 @@ function Saved() {
             ) : (
                 <div id='loadingScreen'>
                     <h1>Loading Saved Books</h1>
-                    {/* Go this loader from: https://www.w3schools.com/howto/howto_css_loader.asp */}
+                    {/* Got this loader from: https://www.w3schools.com/howto/howto_css_loader.asp */}
                     <div className='loader'></div>
                 </div>
             )}
