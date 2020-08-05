@@ -73,16 +73,18 @@ class Search extends Component {
                 <Row>
                     {/* Search Bar */}
                     <Column size='md-12' id='searchCol'>
-                        <h1 id='searchFor'>Search for a book</h1>
-                        <form className='searchBar' onSubmit={this.searchFunc}>
-                            <div className='input-group' id='inputGroup'>
-                                <input type='text' className='searchInput' name='search' placeholder='Type the name of a book' onChange={this.inputFunc} />
-                
-                                <div className='input-group-append'>
-                                    <button type='submit' className='searchBtn'>Search</button>
+                        <div className='jumbotron'>
+                            <h1 id='searchFor'>Search for a book</h1>
+                            <form className='searchBar' onSubmit={this.searchFunc}>
+                                <div className='input-group' id='inputGroup'>
+                                    <input type='text' className='searchInput' name='search' placeholder='Type the name of a book' onChange={this.inputFunc} />
+                    
+                                    <div className='input-group-append'>
+                                        <button type='submit' className='searchBtn'>Search</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </Column>
 
                     {/* Results */}

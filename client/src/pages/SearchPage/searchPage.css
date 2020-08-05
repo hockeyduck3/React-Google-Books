@@ -1,3 +1,7 @@
+#searchFor, #searchCol, h1, h2 {
+    font-family: 'Courgette', cursive;
+}
+
 #searchFor {
     margin-bottom: 15px;
     text-align: center;
@@ -25,6 +29,10 @@
     justify-content: center;
 }
 
+hr {
+    border: 1px solid black;
+}
+
 .input-group {
     justify-content: center;
 }
@@ -47,10 +55,12 @@
 }
 
 .searchBtn {
+    background-color: rgb(10, 118, 151);
     border: 2px black solid;
     border-top-right-radius: 50rem;
     border-bottom-right-radius: 50rem;
     border-left: 0px;
+    color: white;
     font-size: 30px;
     height: 4rem;
     transition: ease-out .15s;
