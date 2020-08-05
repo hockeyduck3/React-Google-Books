@@ -19,7 +19,7 @@
 }
 
 #resultsCol {
-    margin-top: 60px;
+    margin-top: 15px;
 }
 
 #searchCard {
@@ -31,6 +31,7 @@
 
 hr {
     border: 1px solid black;
+    margin-bottom: 30px;
 }
 
 .input-group {

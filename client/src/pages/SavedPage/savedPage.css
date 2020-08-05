@@ -4,12 +4,21 @@
 }
 
 #savedCol {
-    margin-top: 60px;
+    margin-top: 20px;
+}
+
+.findMore {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.searchLink:hover {
+    text-decoration: none;
 }
 
 #loadingScreen {
     text-align: center;
-    margin-top: 60px;
+    margin: 10px auto;
 }
 
 .loader {

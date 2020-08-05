@@ -9,7 +9,8 @@ import './searchPage.css';
 class Search extends Component {
     state = {
         search: '',
-        results: []
+        results: [],
+        loading: false
     }
 
     componentDidMount() {
@@ -39,9 +40,14 @@ class Search extends Component {
         }
 
         if (!validateError) {
+            this.setState({
+                loading: true
+            });
+
             API.searchForBook(this.state.search).then(res => {
                 this.setState({
-                    results: res.data.items
+                    results: res.data.items,
+                    loading: false
                 });
 
                 console.log(this.state.results);
@@ -98,89 +104,95 @@ class Search extends Component {
                         </div>
                     </Column>
 
-                    {/* Results */}
-                    <Column size='md-12' id='resultsCol'>
-                        {res.length !== 0 ? (
-                            <Container>
-                                <Card id='resultsCard'>
-                                    <h2>Results</h2>
-                                    <hr />
-                                    {
-                                        res.map((book, i) => {
-                                            // This will be used to store the Authors info
-                                            let authorRes = [];
+                    {this.state.loading ? (
+                        <div id='loadingScreen'>
+                            <h1>Loading Results</h1>
+                            <div className='loader'></div>
+                        </div>
+                    ) : (
+                        <Column size='md-12' id='resultsCol'>
+                            {res.length !== 0 ? (
+                                <Container>
+                                    <Card id='resultsCard'>
+                                        <h2>Results</h2>
+                                        <hr />
+                                        {
+                                            res.map((book, i) => {
+                                                // This will be used to store the Authors info
+                                                let authorRes = [];
 
-                                            // This will run first to check and see if the book has an Author.
-                                            if (book.volumeInfo.authors === undefined) {
-                                                authorRes.push('Unknown');
-                                            }
-
-                                            // If there is more than one author run this for loop
-                                            else if (book.volumeInfo.authors.length > 1) {
-                                                // Because the authors come in an array this space needs to be added manually
-                                                const spc = ', ';
-
-                                                // Loop over the array
-                                                for (let i = 0; i < book.volumeInfo.authors.length; i++) {
-                                                    // Check and see if it's on the last item of the array
-                                                    if (i !== book.volumeInfo.authors.length - 1) {
-                                                        let a =  book.volumeInfo.authors[i];
-    
-                                                        authorRes.push(a);
-                                                        authorRes.push(spc);
-                                                    } else {
-                                                        let a =  book.volumeInfo.authors[i];
-    
-                                                        authorRes.push(a);
-                                                    }
+                                                // This will run first to check and see if the book has an Author.
+                                                if (book.volumeInfo.authors === undefined) {
+                                                    authorRes.push('Unknown');
                                                 }
-                                            } 
 
-                                            // If there is only one author then just add them
-                                            else {
-                                                authorRes.push(book.volumeInfo.authors);
-                                            }
-                                            
-                                            let imageLink;
-                                            
-                                            return (
-                                                <Card id='resultsCard' key={i}>
-                                                    {book.volumeInfo.imageLinks !== undefined ? (
-                                                        imageLink = book.volumeInfo.imageLinks.thumbnail,
-                                                        <img className='bookImage' src={book.volumeInfo.imageLinks.thumbnail} alt={`Book cover for ${book.volumeInfo.title}`} />
-                                                    ) : (
-                                                        imageLink = './images/no-image.jpg',
-                                                        <img className='bookImage' src='./images/no-image.jpg' alt='Unknown book cover' />
-                                                    )}
+                                                // If there is more than one author run this for loop
+                                                else if (book.volumeInfo.authors.length > 1) {
+                                                    // Because the authors come in an array this space needs to be added manually
+                                                    const spc = ', ';
 
-                                                    {localStorage.getItem(book.id) === null ? (
-                                                        <button id={book.id} className='saveBtn' onClick={() => this.saveFunc({
-                                                            bookId: book.id,
-                                                            title: book.volumeInfo.title,
-                                                            authors: authorRes,
-                                                            categories: book.volumeInfo.categories,
-                                                            description: book.volumeInfo.description,
-                                                            image: imageLink,
-                                                            link: book.volumeInfo.infoLink
-                                                        }, book.id)}>Save Book</button>
-                                                    ) : (
-                                                        <button className='disabledBtn' disabled={true}>Saved</button>
-                                                    )}    
-                                                    <a className='bookLink' href={book.volumeInfo.infoLink} target='_blank' rel='noopener noreferrer'>View Book</a>
-                                                    <p className='bookTitle'>{book.volumeInfo.title}</p>
-                                                    <p className='bookAuthors'>By: {authorRes}</p>
-                                                    <p className='bookCategory'>Category: {book.volumeInfo.categories}</p>
-                                                    <p className='bookDescription'>{book.volumeInfo.description}</p>
-                                                </Card>
-                                            ) 
-                                        })
-                                    }
-                                </Card>
-                            </Container>
-                        ) : (
-                            <div />
-                        )}
-                    </Column>
+                                                    // Loop over the array
+                                                    for (let i = 0; i < book.volumeInfo.authors.length; i++) {
+                                                        // Check and see if it's on the last item of the array
+                                                        if (i !== book.volumeInfo.authors.length - 1) {
+                                                            let a =  book.volumeInfo.authors[i];
+
+                                                            authorRes.push(a);
+                                                            authorRes.push(spc);
+                                                        } else {
+                                                            let a =  book.volumeInfo.authors[i];
+
+                                                            authorRes.push(a);
+                                                        }
+                                                    }
+                                                } 
+
+                                                // If there is only one author then just add them
+                                                else {
+                                                    authorRes.push(book.volumeInfo.authors);
+                                                }
+                                                
+                                                let imageLink;
+                                                
+                                                return (
+                                                    <Card id='resultsCard' key={i}>
+                                                        {book.volumeInfo.imageLinks !== undefined ? (
+                                                            imageLink = book.volumeInfo.imageLinks.thumbnail,
+                                                            <img className='bookImage' src={book.volumeInfo.imageLinks.thumbnail} alt={`Book cover for ${book.volumeInfo.title}`} />
+                                                        ) : (
+                                                            imageLink = './images/no-image.jpg',
+                                                            <img className='bookImage' src='./images/no-image.jpg' alt='Unknown book cover' />
+                                                        )}
+
+                                                        {localStorage.getItem(book.id) === null ? (
+                                                            <button id={book.id} className='saveBtn' onClick={() => this.saveFunc({
+                                                                bookId: book.id,
+                                                                title: book.volumeInfo.title,
+                                                                authors: authorRes,
+                                                                categories: book.volumeInfo.categories,
+                                                                description: book.volumeInfo.description,
+                                                                image: imageLink,
+                                                                link: book.volumeInfo.infoLink
+                                                            }, book.id)}>Save Book</button>
+                                                        ) : (
+                                                            <button className='disabledBtn' disabled={true}>Saved</button>
+                                                        )}    
+                                                        <a className='bookLink' href={book.volumeInfo.infoLink} target='_blank' rel='noopener noreferrer'>View Book</a>
+                                                        <p className='bookTitle'><strong><em>{book.volumeInfo.title}</em></strong></p>
+                                                        <p className='bookAuthors'>By: {authorRes}</p>
+                                                        <p className='bookCategory'>Category: {book.volumeInfo.categories}</p>
+                                                        <p className='bookDescription'>{book.volumeInfo.description}</p>
+                                                    </Card>
+                                                ) 
+                                            })
+                                        }
+                                    </Card>
+                                </Container>
+                            ) : (
+                                <div />
+                            )}
+                        </Column>
+                    )}
                 </Row>
             </Container>
         )

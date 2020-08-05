@@ -40,6 +40,11 @@ function Saved() {
                 <div>
                     {res.length > 0 ? (
                         <Container>
+                            <div className='jumbotron findMore'>
+                                <h1>Wanna find some more books?</h1>
+                                <h2>Head to the <Link className='searchLink' to='/'>Search Page</Link> to find some more!</h2>
+                            </div>
+
                             <Row>
                                 <Column size='md-12' id='savedCol'>
                                     <Card id='resultsCard'>
@@ -71,7 +76,7 @@ function Saved() {
                     ) : (
                         <div className='noResults'>
                             <h1>Looks like there aren't any saved books yet.</h1>
-                            <h2>Head to the <Link to='/'>Search Page</Link> to find some books!</h2>
+                            <h2>Head to the <Link className='searchLink' to='/'>Search Page</Link> to find some books!</h2>
                         </div>
                     )}
                 </div>
