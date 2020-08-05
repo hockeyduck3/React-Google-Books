@@ -22,7 +22,10 @@ function Saved() {
             const newResults = results.filter(book => bookId !== book.bookId);
 
             setResults(newResults);
-            
+
+            if (localStorage.getItem(bookId) !== null) {
+                localStorage.removeItem(bookId);
+            }
         }).catch(err => console.log(err));
     }
 
