@@ -44,7 +44,7 @@ class Saved extends Component {
                                                     ) : (
                                                         <img className='bookImage' src='./images/no-image.jpg' alt='Unknown book cover' />
                                                     )}
-                                                    <button className='disabledBtn'>Delete</button>
+                                                    <button className='deleteBtn'>Delete</button>
                                                     <a className='bookLink' href={book.link} target='_blank' rel='noopener noreferrer'>View Book</a>
                                                     <p className='bookTitle'>{book.title}</p>
                                                     <p className='bookAuthors'>By: {book.authors}</p>

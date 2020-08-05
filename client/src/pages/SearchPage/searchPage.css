@@ -68,7 +68,7 @@
     margin-right: 30px;
 }
 
-.bookLink, .saveBtn {
+.bookLink, .saveBtn, .deleteBtn {
     background-color: deepskyblue;
     border: 1px black solid;
     border-radius: 0.5rem;
@@ -80,7 +80,7 @@
     padding: 5px;
 }
 
-.saveBtn {
+.saveBtn, .deleteBtn {
     background-color: rgb(255, 0, 0);
     margin-left: 15px;
 }
@@ -95,19 +95,19 @@
     padding: 5px;
 }
 
-.bookLink:hover, .saveBtn:hover {
+.bookLink:hover, .saveBtn:hover, .deleteBtn:hover {
     text-decoration: none;
     color: white;
     transform: scale(1.02);
 }
 
-.bookLink:active, .saveBtn:active {
+.bookLink:active, .saveBtn:active, .deleteBtn:active {
     box-shadow: 0px 0px 0px 0px black;
     outline: none;
     transform: scale(1.00);
 }
 
-.saveBtn:focus {
+.saveBtn:focus, .deleteBtn:focus {
     outline: none;
 }
 
