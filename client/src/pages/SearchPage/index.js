@@ -127,12 +127,16 @@ class Search extends Component {
                                             else {
                                                 authorRes.push(book.volumeInfo.authors);
                                             }
-
+                                            
+                                            let imageLink;
+                                            
                                             return (
                                                 <Card id='resultsCard' key={i}>
                                                     {book.volumeInfo.imageLinks !== undefined ? (
+                                                        imageLink = book.volumeInfo.imageLinks.thumbnail,
                                                         <img className='bookImage' src={book.volumeInfo.imageLinks.thumbnail} alt={`Book cover for ${book.volumeInfo.title}`} />
                                                     ) : (
+                                                        imageLink = './images/no-image.jpg',
                                                         <img className='bookImage' src='./images/no-image.jpg' alt='Unknown book cover' />
                                                     )}
 
@@ -143,7 +147,7 @@ class Search extends Component {
                                                             authors: authorRes,
                                                             categories: book.volumeInfo.categories,
                                                             description: book.volumeInfo.description,
-                                                            image: book.volumeInfo.imageLinks.thumbnail,
+                                                            image: imageLink,
                                                             link: book.volumeInfo.infoLink
                                                         }, book.id)}>Save Book</button>
                                                     ) : (
