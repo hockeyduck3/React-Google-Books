@@ -12,5 +12,13 @@ module.exports = {
             res.json(book);
         })
         .catch(err => res.status(422).json(err));
+    },
+    
+    deleteBook: function(req, res) {
+        db.Book.findByIdAndDelete(req.params.id, function(err) {
+            if (err) throw(err);
+
+            res.json('Deleted');
+        })
     }
 }

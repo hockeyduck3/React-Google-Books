@@ -17,6 +17,15 @@ function Saved() {
         }).catch(err => console.log(err));
     }, []);
 
+    function removeBook(mongoId, bookId) {
+        API.removeBook(mongoId).then(res => {
+            const newResults = results.filter(book => bookId !== book.bookId);
+
+            setResults(newResults);
+            
+        }).catch(err => console.log(err));
+    }
+
     const res = results;
 
     return (
@@ -37,7 +46,7 @@ function Saved() {
                                                 ) : (
                                                     <img className='bookImage' src='./images/no-image.jpg' alt='Unknown book cover' />
                                                 )}
-                                                <button className='deleteBtn'>Delete</button>
+                                                <button className='deleteBtn' onClick={() => removeBook(book._id, book.bookId)}>Delete</button>
                                                 <a className='bookLink' href={book.link} target='_blank' rel='noopener noreferrer'>View Book</a>
                                                 <p className='bookTitle'>{book.title}</p>
                                                 <p className='bookAuthors'>By: {book.authors}</p>

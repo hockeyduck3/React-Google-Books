@@ -47,8 +47,8 @@ class Search extends Component {
 
         localStorage.setItem(id, id);
 
-        API.saveBook(book).then(res => {
-            console.log(res);
+        API.saveBook(book).then(() => {
+            console.log('Saved');
         }).catch(err => {
             console.log(err);
         });
