@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const Scehma = mongoose.Schema;
 
 const bookSchema = new Scehma({
+    bookId: {
+        type: String,
+        required: true
+    },
+
     title: {
         type: String,
         required: true 

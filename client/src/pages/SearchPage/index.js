@@ -138,6 +138,7 @@ class Search extends Component {
 
                                                     {localStorage.getItem(book.id) === null ? (
                                                         <button id={book.id} className='saveBtn' onClick={() => this.saveFunc({
+                                                            bookId: book.id,
                                                             title: book.volumeInfo.title,
                                                             authors: authorRes,
                                                             categories: book.volumeInfo.categories,
