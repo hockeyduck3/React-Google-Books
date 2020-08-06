@@ -15,6 +15,10 @@ server.use(express.static(path.join(__dirname, 'client/build')));
 
 server.use(routes);
 
+server.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
+
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/googlebooks');
 
 server.listen(PORT, () => {
